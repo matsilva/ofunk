@@ -1,4 +1,6 @@
 # Logs
+examples/media/*
+!examples/media/.fortesting
 logs
 *.log
 npm-debug.log*

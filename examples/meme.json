@@ -1,0 +1,26 @@
+{
+    "saveFilePath": "/Users/evsilva22/ofunk/ofunk/examples/media/xmas-meme_v3.mp4",
+    "padding": 200,
+    "media": [
+        {
+            "file": "/Users/evsilva22/ofunk/ofunk/examples/media/Christmas_Tree.mp4"
+        }
+    ],
+    "text": [
+        {
+            "text": "Merry",
+            "fontFile": "/Users/evsilva22/Library/Fonts/AllerDisplay.ttf",
+            "fontSize": 72
+        },
+        {
+            "text": "Christmas",
+            "fontFile": "/Users/evsilva22/Library/Fonts/AllerDisplay.ttf",
+            "fontSize": 72
+        }
+    ],
+    "color": [
+        {
+            "value": "0xffffff"
+        }
+    ]
+}
