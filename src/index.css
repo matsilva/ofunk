@@ -1,0 +1,13 @@
+:root {
+    --color1: #121f27;
+    --color2: #416275;
+    --color3: #6191a8;
+    --color4: #bbcfda;
+    --color5: #e4eef0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}

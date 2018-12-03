@@ -4,7 +4,7 @@ module.exports = function getVideoConfig(filePath) {
     if (!filePath) {
         return {
             err: new Error('Did not specify a video config json file'),
-            videoConfig: null,
+            videoConfig: null
         };
     }
 
@@ -15,7 +15,7 @@ module.exports = function getVideoConfig(filePath) {
     } catch (error) {
         return {
             err: error,
-            videoConfig: null,
+            videoConfig: null
         };
     }
 };

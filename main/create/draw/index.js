@@ -1,4 +1,4 @@
-function memeTextTop(textInfo, padding) {
+function memeTextTop(textInfo) {
     return (
         "drawtext=text='" +
         textInfo.text +
@@ -7,12 +7,12 @@ function memeTextTop(textInfo, padding) {
         ':fontsize=' +
         textInfo.fontSize +
         ':x=(w-tw)/2:y=(' +
-        padding / 2 +
+        textInfo.padding / 2 +
         '-th)/2'
     );
 }
 
-function memeTextBottom(textInfo, padding) {
+function memeTextBottom(textInfo) {
     return (
         "drawtext=text='" +
         textInfo.text +
@@ -21,12 +21,12 @@ function memeTextBottom(textInfo, padding) {
         ':fontsize=' +
         textInfo.fontSize +
         ':x=(w-tw)/2:y=h-' +
-        padding / 4 +
+        textInfo.padding / 4 +
         '-(th/2)'
     );
 }
 
 module.exports = {
     memeTextTop,
-    memeTextBottom,
+    memeTextBottom
 };

@@ -18,35 +18,29 @@ module.exports = async function meme(videoConfigFile) {
             ':0:(oh-ih)/2:color=' +
             color[0].value +
             ', ' +
-            draw.memeTextTop(text[0], padding) +
+            draw.memeTextTop(text[0]) +
             ', ' +
-            draw.memeTextBottom(text[1], padding) +
+            draw.memeTextBottom(text[1]) +
             '" ' +
             saveFilePath;
 
         const ffmpeg = exec(cmd);
 
         let ffmpegErr;
-        ffmpeg.on('data', (buffer) => {
+        ffmpeg.on('data', buffer => {
             console.log(buffer.toString());
         });
 
-        ffmpeg.on('error', (buffer) => {
+        ffmpeg.on('error', buffer => {
             console.log('ffmpeg err', buffer.toString());
             ffmpegErr = buffer.toString();
         });
 
         const waitForClose = () => {
             return new Promise((resolve, reject) => {
-                ffmpeg.on('close', (code) => {
+                ffmpeg.on('close', code => {
                     if (code !== 0) {
-                        reject(
-                            new Error(
-                                ffmpegErr
-                                    ? ffmpegErr
-                                    : 'ffmpeg failed to create video',
-                            ),
-                        );
+                        reject(new Error(ffmpegErr ? ffmpegErr : 'ffmpeg failed to create video'));
                     } else {
                         console.log('Video successfully created!');
                         console.log('    ', saveFilePath);

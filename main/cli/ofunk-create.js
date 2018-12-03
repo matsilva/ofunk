@@ -1,5 +1,5 @@
 const program = require('commander');
-const create = require('./create');
+const create = require('../create');
 
 program.option('-c, --config <path>', 'set the video config json.');
 
@@ -13,7 +13,7 @@ program.parse(process.argv);
 
 const VIDEO_TYPES = {
     SLIDESHOW: 'slideshow',
-    MEME: 'meme',
+    MEME: 'meme'
 };
 
 const videoType = program.args[0];

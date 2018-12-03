@@ -2,24 +2,48 @@
     "name": "ofunk",
     "version": "0.1.0",
     "description": "",
-    "main": "index.js",
+    "main": "main/main.js",
     "scripts": {
-        "test": "jest"
+        "start": "electron .",
+        "start:react": "react-scripts start",
+        "build:react": "react-scripts build",
+        "test:old": "react-scripts test --env=jsdom",
+        "test": "jest",
+        "precommit": "pretty-quick --staged",
+        "prettier": "prettier --write 'src/**/*.{js,jsx,less,css}'",
+        "lint": "eslint src --color"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/matsilva/ofunk-cli.git"
+        "url": "git+https://github.com/matsilva/ofunk.git"
     },
     "author": "Mat Silva",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/matsilva/ofunk-cli/issues"
+        "url": "https://github.com/matsilva/ofunk/issues"
     },
-    "homepage": "https://github.com/matsilva/ofunk-cli#readme",
+    "homepage": "https://github.com/matsilva/ofunk#readme",
     "dependencies": {
         "commander": "^2.19.0"
     },
     "devDependencies": {
-        "jest": "^23.6.0"
+        "react": "^16.4.0",
+        "react-dom": "^16.4.0",
+        "react-scripts": "1.1.4",
+        "electron": "^2.0.2",
+        "jest": "^23.6.0",
+        "prettier": "1.12.0",
+        "pretty-quick": "^1.4.1",
+        "husky": "^0.14.3",
+        "babel-plugin-transform-async-to-generator": "^6.24.1",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-react": "^6.24.1",
+        "electron-forge": "^5.2.3",
+        "electron-prebuilt-compile": "3.0.10",
+        "eslint": "^3.19.0",
+        "eslint-config-airbnb": "^15.1.0",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-jsx-a11y": "^5.1.1",
+        "eslint-plugin-react": "^7.11.1"
     }
 }
