@@ -5,9 +5,9 @@
     "main": "main/main.js",
     "scripts": {
         "start": "electron .",
-        "start:react": "react-scripts start",
-        "build:react": "react-scripts build",
-        "test:old": "react-scripts test --env=jsdom",
+        "start:ui": "react-scripts start",
+        "build:ui": "react-scripts build",
+        "eject": "react-scripts eject",
         "test": "jest",
         "precommit": "pretty-quick --staged",
         "prettier": "prettier --write 'src/**/*.{js,jsx,less,css}'",
