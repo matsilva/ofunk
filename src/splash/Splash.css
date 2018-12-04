@@ -2,12 +2,16 @@
     width: 100%;
 }
 
+.splash .logo-container img {
+    width: 250px;
+}
+
 .splash .module-container {
     width: 100%;
 }
 
 .splash .module {
-    width: 48%;
+    width: 45%;
 }
 
 .splash .module-title {

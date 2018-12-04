@@ -1,6 +1,7 @@
 import React from 'react';
 import ProjectTypeEnum from './enum/ProjectTypeEnum';
 import Splash from './splash/Splash';
+import './css/semantic-ui/semantic.less';
 
 export default class MainGui extends React.Component {
     state = {
@@ -11,7 +12,7 @@ export default class MainGui extends React.Component {
     };
     render() {
         switch (this.state.view) {
-            case 'meme':
+            case ProjectTypeEnum.MEME:
                 return 'This is a meme';
 
             case 'splash':
