@@ -33,6 +33,8 @@ export default class Splash extends React.Component {
                                 return (
                                     <Popup
                                         key={i + 'splash-button'}
+                                        inverted
+                                        position="top center"
                                         trigger={
                                             <button
                                                 onClick={this.selectProjectType.bind(this, p.type)}
