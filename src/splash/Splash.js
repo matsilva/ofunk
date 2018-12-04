@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Popup } from 'semantic-ui-react';
-import './Splash.css';
+import './Splash.less';
 import ProjectTypeEnum from '../enum/ProjectTypeEnum';
 
 const projectTypes = [

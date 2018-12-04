@@ -66,13 +66,13 @@
         "electron-forge": "^5.2.3",
         "electron-prebuilt-compile": "3.0.10",
         "eslint": "^3.19.0",
+        "eslint-config-prettier": "^3.3.0",
         "eslint-config-react-app": "^2.1.0",
         "eslint-loader": "1.9.0",
         "eslint-plugin-flowtype": "2.39.1",
         "eslint-plugin-import": "2.8.0",
         "eslint-plugin-jsx-a11y": "5.1.1",
         "eslint-plugin-react": "7.4.0",
-        "eslint-config-prettier": "^3.3.0",
         "husky": "^0.14.3",
         "jest": "^23.6.0",
         "prettier": "1.12.0",
@@ -81,7 +81,8 @@
         "react-dom": "^16.4.0",
         "react-testing-library": "^5.3.1",
         "semantic-ui-css": "^2.4.1",
-        "semantic-ui-react": "^0.83.0"
+        "semantic-ui-react": "^0.83.0",
+        "style-resources-loader": "^1.2.1"
     },
     "jest": {
         "collectCoverageFrom": ["src/**/*.{js,jsx,mjs}"],
@@ -95,9 +96,6 @@
             "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
         },
         "transformIgnorePatterns": ["[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"],
-        "moduleNameMapper": {
-            "^react-native$": "react-native-web"
-        },
         "moduleFileExtensions": ["web.js", "js", "json", "web.jsx", "jsx", "node", "mjs"]
     },
     "babel": {

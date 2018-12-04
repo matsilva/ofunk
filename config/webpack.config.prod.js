@@ -199,12 +199,6 @@ module.exports = {
                                                     })
                                                 ]
                                             }
-                                        },
-                                        {
-                                            loader: require.resolve('less-loader'),
-                                            options: {
-                                                importLoaders: 1
-                                            }
                                         }
                                     ]
                                 },
@@ -212,6 +206,31 @@ module.exports = {
                             )
                         )
                         // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
+                    },
+                    {
+                        test: /\.less$/,
+                        use: ExtractTextPlugin.extract({
+                            use: [
+                                {
+                                    loader: 'css-loader',
+                                    options: { minimize: true }
+                                },
+                                {
+                                    loader: 'less-loader',
+                                    options: {
+                                        paths: [path.resolve(__dirname, '../node_modules')]
+                                    }
+                                },
+                                {
+                                    loader: 'style-resources-loader',
+                                    options: {
+                                        patterns: [path.resolve(__dirname, '../src/css/variables.less')],
+                                        injector: 'append'
+                                    }
+                                }
+                            ],
+                            fallback: 'style-loader'
+                        })
                     },
                     // "file" loader makes sure assets end up in the `build` folder.
                     // When you `import` an asset, you get its filename.
