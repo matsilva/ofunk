@@ -64,6 +64,6 @@ export default class Splash extends React.Component {
     }
 }
 
-Splash.propTyps = {
+Splash.propTypes = {
     selectProjectType: PropTypes.func
 };
