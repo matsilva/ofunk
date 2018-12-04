@@ -15,6 +15,12 @@ function createWindow() {
         win.webContents.openDevTools();
     }
 
+    //open urls in default browser
+    win.webContents.on('new-window', function(e, url) {
+        e.preventDefault();
+        require('electron').shell.openExternal(url);
+    });
+
     win.on('closed', () => {
         win = null;
     });

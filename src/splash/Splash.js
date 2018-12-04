@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Popup } from 'semantic-ui-react';
+import { Popup, Message } from 'semantic-ui-react';
 import './Splash.less';
 import ProjectTypeEnum from '../enum/ProjectTypeEnum';
 
@@ -19,7 +19,7 @@ export default class Splash extends React.Component {
     };
     render() {
         return (
-            <div className="splash">
+            <div className="splash flex flex-column justify-between">
                 <div className="header flex justify-between mt5 mb5 ph3">
                     <div className="logo-container">
                         <img alt="ofunk logo" src="./images/ofunk-logo.png" />
@@ -60,6 +60,14 @@ export default class Splash extends React.Component {
                     <div className="module flex flex-wrap ph3">
                         <h2 className="module-title">Recent</h2>
                     </div>
+                </div>
+                <div className="footer flex justify-center mb3">
+                    <Message compact color="black" size="small">
+                        Made with ️🍺 by{' '}
+                        <a target="_blank" href="https://twitter.com/matsilva">
+                            @matsilva
+                        </a>
+                    </Message>
                 </div>
             </div>
         );
