@@ -1,3 +1,8 @@
+/* Load up all the utility goodies from tachyons */
+
+@import './css/typography.css';
+@import './css/spacing.css';
+@import './css/flex.css';
 :root {
     --color1: #2b2b2b;
     --color2: #4b4b4b;
