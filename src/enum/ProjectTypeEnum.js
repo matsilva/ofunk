@@ -3,5 +3,6 @@ export default {
     PROMO: 'promo',
     WATERMARK: 'watermark',
     ROTATE: 'rotate',
-    WORD_STORY: 'wordstory'
+    WORD_STORY: 'wordstory',
+    OPEN: 'open'
 };

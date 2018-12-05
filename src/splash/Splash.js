@@ -3,14 +3,19 @@ import PropTypes from 'prop-types';
 import { Popup, Message } from 'semantic-ui-react';
 import './Splash.less';
 import ProjectTypeEnum from '../enum/ProjectTypeEnum';
+import translate from '../i18n/translate';
+
+const t = translate(['splash', 'projectTypes']);
+
+const { MEME, WORD_STORY, WATERMARK, PROMO, ROTATE, OPEN } = ProjectTypeEnum;
 
 const projectTypes = [
-    { type: ProjectTypeEnum.MEME, label: 'Meme', comingSoon: false },
-    { type: 'open', label: 'Open Project', comingSoon: false },
-    { type: ProjectTypeEnum.WORD_STORY, label: 'Word Story', comingSoon: true },
-    { type: ProjectTypeEnum.WATERMARK, label: 'Watermark', comingSoon: true },
-    { type: ProjectTypeEnum.PROMO, label: 'Promo', comingSoon: true },
-    { type: ProjectTypeEnum.ROTATE, label: 'Rotate', comingSoon: true }
+    { type: MEME, label: t(MEME), comingSoon: false },
+    { type: OPEN, label: t(OPEN), comingSoon: false },
+    { type: WORD_STORY, label: t(WORD_STORY), comingSoon: true },
+    { type: WATERMARK, label: t(WATERMARK), comingSoon: true },
+    { type: PROMO, label: t(PROMO), comingSoon: true },
+    { type: ROTATE, label: t(ROTATE), comingSoon: true }
 ];
 
 export default class Splash extends React.Component {
@@ -27,12 +32,12 @@ export default class Splash extends React.Component {
                 </div>
                 <div className="module-container flex flex-wrap justify-between">
                     <div className="module flex flex-wrap ph3">
-                        <h2 className="module-title">Create New</h2>
+                        <h2 className="module-title">{t('createNew')}</h2>
                         {projectTypes.map((p, i) => {
                             if (p.comingSoon) {
                                 return (
                                     <Popup
-                                        key={i + 'splash-button'}
+                                        key={`${i}-splash-button`}
                                         inverted
                                         position="top center"
                                         trigger={
@@ -48,7 +53,7 @@ export default class Splash extends React.Component {
                             }
                             return (
                                 <button
-                                    key={i + 'splash-button'}
+                                    key={`${i}splash-button`}
                                     onClick={this.selectProjectType.bind(this, p.type)}
                                     className={`create-button ${p.type === 'open' ? 'project' : ''}
                                     `}>
@@ -63,7 +68,7 @@ export default class Splash extends React.Component {
                 </div>
                 <div className="footer flex justify-center mb3">
                     <Message compact color="black" size="small">
-                        Made with ️🍺 by{' '}
+                        {`${t('love')} `}
                         <a target="_blank" href="https://twitter.com/matsilva">
                             @matsilva
                         </a>

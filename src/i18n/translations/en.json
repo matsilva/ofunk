@@ -1,0 +1,15 @@
+{
+    "splash": {
+        "createNew": "Create New",
+        "recent": "Recent",
+        "love": "Made with ️🍺 by"
+    },
+    "projectTypes": {
+        "meme": "Meme",
+        "wordstory": "Word Story",
+        "watermark": "Watermark",
+        "promo": "Promo",
+        "rotate": "Rotate",
+        "open": "Open Project"
+    }
+}
