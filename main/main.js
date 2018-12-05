@@ -8,7 +8,7 @@ const isDevMode = process.execPath.match(/[\\/]electron/);
 function createWindow() {
     // Create the browser window.
     const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
-    win = new BrowserWindow({ width, height });
+    win = new BrowserWindow({ width, height, minWidth: 965, minHeight: 800 });
     win.loadURL(isDevMode ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
     // Open the DevTools.
     if (isDevMode) {
@@ -16,7 +16,7 @@ function createWindow() {
     }
 
     //open urls in default browser
-    win.webContents.on('new-window', function(e, url) {
+    win.webContents.on('new-window', (e, url) => {
         e.preventDefault();
         require('electron').shell.openExternal(url);
     });
