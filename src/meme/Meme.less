@@ -1,0 +1,47 @@
+.editor-container {
+    width: 100vw;
+    height: 100vh;
+    &.meme {
+        .editor-left {
+            height: 100%;
+        }
+        .meme-player-container {
+            flex-grow: 1;
+        }
+        .meme-player {
+            box-shadow: #000 0px 0px 5px 2px;
+            width: 500px;
+        }
+        .meme-media-container {
+            height: 300px;
+        }
+        .meme-top-text {
+            background-color: @white1;
+            text-align: center;
+            padding: 25px 0px;
+            font-family: 'Black Han Sans', sans-serif;
+        }
+        .meme-bottom-text {
+            background-color: @white1;
+            text-align: center;
+            padding: 25px 0px;
+            font-family: 'Black Han Sans', sans-serif;
+        }
+        .ui.progress {
+            flex-grow: 1;
+            margin: 0;
+        }
+        .bottom-action-bar {
+            background-color: @grey4;
+            width: 100%;
+        }
+        .action-left-button {
+            margin-right: 2rem;
+            margin-left: 2rem;
+        }
+        .action-right-button {
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+    }
+}

@@ -2,10 +2,11 @@ import React from 'react';
 import ProjectTypeEnum from './enum/ProjectTypeEnum';
 import Splash from './splash/Splash';
 import './css/semantic-ui/semantic.less';
+import Meme from './meme/Meme';
 
 export default class MainGui extends React.Component {
     state = {
-        view: 'splash'
+        view: 'meme'
     };
     selectProjectType = type => {
         this.setState({ view: type });
@@ -13,7 +14,7 @@ export default class MainGui extends React.Component {
     render() {
         switch (this.state.view) {
             case ProjectTypeEnum.MEME:
-                return 'This is a meme';
+                return <Meme />;
 
             case 'splash':
             default:

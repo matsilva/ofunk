@@ -4,6 +4,12 @@
         "recent": "Recent",
         "love": "Made with ️🍺 by"
     },
+    "meme": {
+        "topText": "Top Text",
+        "bottomText": "Bottom Text",
+        "addMedia": "Add an image or video",
+        "create": "Create"
+    },
     "projectTypes": {
         "meme": "Meme",
         "wordstory": "Word Story",

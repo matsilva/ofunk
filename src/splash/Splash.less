@@ -11,32 +11,35 @@
     }
     .module {
         width: 45%;
+        &.recent {
+            width: 40%;
+        }
     }
     .module-title {
-        color: @color6;
+        color: @white1;
         width: 100%;
     }
     .create-button {
         cursor: pointer;
-        background: @color4;
+        background: @purple1;
         border: none;
         border-radius: 8px;
         padding: 10px 0;
         font-family: 'Black Han Sans', sans-serif;
         font-size: 1.5rem;
         width: 200px;
-        color: @color6;
+        color: @white1;
         letter-spacing: 0.03px;
         margin: 0.5rem;
     }
     .create-button:hover {
-        border-right: @color6 solid 4px;
+        border-right: @white1 solid 4px;
     }
     .create-button.project {
-        background: @color2;
+        background: @grey2;
     }
     .create-button.coming-soon {
-        background: @color9;
+        background: @pink1;
         opacity: 0.8;
     }
 }

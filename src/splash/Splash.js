@@ -25,13 +25,13 @@ export default class Splash extends React.Component {
     render() {
         return (
             <div className="splash flex flex-column justify-between">
-                <div className="header flex justify-between mt5 mb5 ph3">
+                <div className="header flex justify-between mt5 mb5 ph4">
                     <div className="logo-container">
                         <img alt="ofunk logo" src="./images/ofunk-logo.png" />
                     </div>
                 </div>
                 <div className="module-container flex flex-wrap justify-between">
-                    <div className="module flex flex-wrap ph3">
+                    <div className="module flex flex-wrap ph4">
                         <h2 className="module-title">{t('createNew')}</h2>
                         {projectTypes.map((p, i) => {
                             if (p.comingSoon) {
@@ -62,7 +62,7 @@ export default class Splash extends React.Component {
                             );
                         })}
                     </div>
-                    <div className="module flex flex-wrap ph3">
+                    <div className="module flex flex-wrap ph4 recent">
                         <h2 className="module-title">Recent</h2>
                     </div>
                 </div>
