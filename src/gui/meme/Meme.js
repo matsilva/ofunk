@@ -5,18 +5,35 @@ import './Meme.less';
 
 const t = translate(['meme']);
 export default class Meme extends React.Component {
+    topText = React.createRef();
+    bottomText = React.createRef();
+    state = {
+        topText: t('topText'),
+        bottomText: t('bottomText')
+    };
+    handleTextChange = e => {
+        this.setState({
+            topText: e.target.value
+        });
+    };
+    toggleTextDrawer = () => {
+        console.log('toggled');
+    };
     render() {
         return (
             <div className="editor-container meme">
                 <div className="editor-left flex flex-column justify-between items-center">
                     <div className="meme-player-container flex justify-center items-center">
                         <div className="meme-player">
-                            <div contentEditable className="meme-top-text f2">
-                                {t('topText')}
-                            </div>
+                            <textarea
+                                onChange={this.handleTextChange}
+                                onFocus={this.toggleTextDrawer}
+                                className="meme-top-text f2"
+                                value={this.state.topText}
+                            />
                             <div className="meme-media-container flex justify-center items-center">
                                 <div className="add-media-container">
-                                    <Button color="grey" content="Grey" className="add-media-button">
+                                    <Button color="grey" className="add-media-button">
                                         {t('addMedia')}
                                     </Button>
                                 </div>
@@ -27,9 +44,11 @@ export default class Meme extends React.Component {
                         </div>
                     </div>
                     <div className="bottom-action-bar flex justify-between items-center pv2">
-                        <Button icon="play" className="action-left-button" />
+                        <Button icon="play" color="blue" className="action-left-button" />
                         <Progress percent={32} inverted color="blue" progress />
-                        <Button className="action-right-button">{t('create')}</Button>
+                        <Button color="purple" className="action-right-button">
+                            {t('create')}
+                        </Button>
                     </div>
                 </div>
                 <div className="editor-right" />

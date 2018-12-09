@@ -2,7 +2,7 @@
     "name": "ofunk",
     "version": "0.1.0",
     "description": "",
-    "main": "main/main.js",
+    "main": "src/main/main.js",
     "scripts": {
         "start": "electron .",
         "start:ui": "node scripts/start.js",

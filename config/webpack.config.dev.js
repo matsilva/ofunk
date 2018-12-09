@@ -1,5 +1,3 @@
-'use strict';
-
 const autoprefixer = require('autoprefixer');
 const path = require('path');
 const webpack = require('webpack');
@@ -199,7 +197,7 @@ module.exports = {
                             {
                                 loader: 'style-resources-loader',
                                 options: {
-                                    patterns: [path.resolve(__dirname, '../src/css/variables.less')],
+                                    patterns: [path.resolve(__dirname, '../src/gui/css/variables.less')],
                                     injector: 'append'
                                 }
                             }
