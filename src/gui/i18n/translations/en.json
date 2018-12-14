@@ -8,7 +8,8 @@
         "topText": "Top Text",
         "bottomText": "Bottom Text",
         "addMedia": "Add an image or video",
-        "create": "Create"
+        "create": "Create",
+        "unknownMedia": "Uknown media file. Please add an image or video"
     },
     "projectTypes": {
         "meme": "Meme",

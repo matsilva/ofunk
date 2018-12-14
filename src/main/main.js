@@ -8,7 +8,13 @@ const isDevMode = process.execPath.match(/[\\/]electron/);
 function createWindow() {
     // Create the browser window.
     const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
-    win = new BrowserWindow({ width, height, minWidth: 965, minHeight: 800 });
+    win = new BrowserWindow({
+        width,
+        height,
+        minWidth: 965,
+        minHeight: 800,
+        ...(isDevMode && { webPreferences: { webSecurity: false } })
+    });
     win.loadURL(isDevMode ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
     // Open the DevTools.
     if (isDevMode) {
