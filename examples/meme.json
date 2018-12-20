@@ -1,8 +1,8 @@
 {
-    "saveFilePath": "/Users/evsilva22/ofunk/ofunk/examples/media/xmas-meme_v3.mp4",
+    "saveFilePath": "./examples/media/xmas-meme_v3.mp4",
     "media": [
         {
-            "file": "/Users/evsilva22/ofunk/ofunk/examples/media/Christmas_Tree.mp4"
+            "file": "./examples/media/Christmas_Tree.mp4"
         }
     ],
     "text": [

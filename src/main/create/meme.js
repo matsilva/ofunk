@@ -10,19 +10,9 @@ module.exports = async function meme(videoConfigFile) {
     }
     try {
         const { text, media, color, saveFilePath, padding = 100 } = videoConfig;
-        const cmd =
-            'ffmpeg -y -i ' +
-            media[0].file +
-            ' -filter_complex "[0:v]pad=iw:ih+' +
-            padding +
-            ':0:(oh-ih)/2:color=' +
-            color[0].value +
-            ', ' +
-            draw.memeTextTop(text[0]) +
-            ', ' +
-            draw.memeTextBottom(text[1]) +
-            '" ' +
-            saveFilePath;
+        const cmd = `ffmpeg -y -i ${media[0].file} -filter_complex "[0:v]pad=iw:ih+${padding}:0:(oh-ih)/2:color=${
+            color[0].value
+        }, ${draw.memeTextTop(text[0])}, ${draw.memeTextBottom(text[1])}" ${saveFilePath}`;
 
         const ffmpeg = exec(cmd);
 
