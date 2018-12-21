@@ -3,6 +3,7 @@ import translate from '../i18n/translate';
 import { Button, Progress } from 'semantic-ui-react';
 import './Meme.less';
 const { dialog } = window.require('electron').remote;
+const { ipcRenderer } = window.require('electron');
 const fs = window.require('fs');
 const path = window.require('path');
 
@@ -26,7 +27,6 @@ export default class Meme extends React.Component {
     componentWillUnmount() {
         clearInterval(this.playInterval);
     }
-
     handleMediaMouseOver = () => {
         console.log('mouseover');
     };
@@ -79,6 +79,15 @@ export default class Meme extends React.Component {
     onPause = () => {
         this.videoRef.current.pause();
         clearInterval(this.playInterval);
+    };
+    createVideo = () => {
+        const { topText, bottomText, mediaFile } = this.state;
+        const videoData = {
+            topText,
+            bottomText,
+            mediaFile
+        };
+        ipcRenderer.send('meme-create', videoData);
     };
     renderMedia = mediaFile => {
         if (mediaFile.type.includes('video')) {
@@ -150,7 +159,7 @@ export default class Meme extends React.Component {
                             className="action-left-button"
                         />
                         <Progress percent={Math.floor(currentPlayBackTime / duration * 100)} inverted color="blue" />
-                        <Button color="purple" className="action-right-button">
+                        <Button onClick={this.createVideo} color="purple" className="action-right-button">
                             {t('create')}
                         </Button>
                     </div>

@@ -1,4 +1,5 @@
 const electron = require('electron');
+const { ipcMain } = electron;
 const path = require('path');
 
 const { app, BrowserWindow } = require('electron');
@@ -49,4 +50,8 @@ app.on('activate', () => {
     if (win === null) {
         createWindow();
     }
+});
+
+ipcMain.on('meme-create', (event, arg) => {
+    console.log('video data', arg);
 });
