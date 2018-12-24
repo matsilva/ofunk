@@ -1,6 +1,7 @@
 const electron = require('electron');
 const { ipcMain } = electron;
 const path = require('path');
+const create = require('./create');
 
 const { app, BrowserWindow } = require('electron');
 
@@ -52,6 +53,10 @@ app.on('activate', () => {
     }
 });
 
-ipcMain.on('meme-create', (event, arg) => {
-    console.log('video data', arg);
+ipcMain.on('meme-create', async (event, data) => {
+    console.log('creating', data.saveFilePath);
+    const err = await create.meme(data);
+    if (err) {
+        console.log('error creating meme', err);
+    }
 });

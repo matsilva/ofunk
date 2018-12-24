@@ -9,7 +9,7 @@ function memeConfigFromData(data) {
         //TODO: Add proper validation
         return null;
     };
-    const err = validateData(videoData);
+    const err = validateData();
     return {
         err,
         memeConfig: {
@@ -23,13 +23,13 @@ function memeConfigFromData(data) {
 }
 
 module.exports = async function meme(videoData) {
-    const { err, memeConfig } = memeConfigFromData(videoData);
-    if (err) {
-        return err;
-    }
     try {
+        const { err, memeConfig } = memeConfigFromData(videoData);
+        if (err) {
+            return err;
+        }
         const { topText, bottomText, media, color, saveFilePath, padding = 100 } = memeConfig;
-        const cmd = `ffmpeg -y -i ${media.file} -filter_complex "[0:v]pad=iw:ih+${padding}:0:(oh-ih)/2:color=${
+        const cmd = `ffmpeg -y -i ${media.path} -filter_complex "[0:v]pad=iw:ih+${padding}:0:(oh-ih)/2:color=${
             color[0].value
         }, ${draw.memeTextTop(topText)}, ${draw.memeTextBottom(bottomText)}" ${saveFilePath}`;
 

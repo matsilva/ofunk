@@ -1,7 +1,7 @@
 {
     "saveFilePath": "./examples/media/xmas-meme_v3.mp4",
     "media": {
-        "file": "./examples/media/Christmas_Tree.mp4",
+        "path": "./examples/media/Christmas_Tree.mp4",
         "type": ""
     },
     "topText": {

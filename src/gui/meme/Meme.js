@@ -4,6 +4,7 @@ import { Button, Progress } from 'semantic-ui-react';
 import './Meme.less';
 const { ipcRenderer } = window.require('electron');
 const { dialog } = window.require('electron').remote;
+const path = window.require('path');
 
 const t = translate(['meme']);
 
@@ -51,9 +52,8 @@ export default class Meme extends React.Component {
         e.preventDefault();
         e.stopPropagation();
 
-        console.log(e.dataTransfer.files[0]);
         if (e.dataTransfer.files[0]) {
-            this.setState({ media: e.dataTransfer.files[0] });
+            this.setState({ media: this.fileToObj(e.dataTransfer.files[0]) });
         }
     };
     onDurationChange = () => {
@@ -63,13 +63,26 @@ export default class Meme extends React.Component {
         });
     };
     handleTextChange = (e, textType) => {
+        const textState = JSON.parse(JSON.stringify(this.state[`${textType}Text`]));
+        textState.text = e.target.innerText;
+
         this.setState({
-            [`${textType}Text`]: e.target.innerText
+            [`${textType}Text`]: textState
         });
     };
+    fileToObj = file => {
+        return {
+            path: file.path,
+            lastModifiedDate: file.lastModifiedDate,
+            name: file.name,
+            size: file.size,
+            type: file.type
+        };
+    };
+
     handleMediaInput = () => {
         if (this.mediaFilePicker.current.files[0]) {
-            this.setState({ media: this.mediaFilePicker.current.files[0] });
+            this.setState({ media: this.fileToObj(this.mediaFilePicker.current.files[0]) });
         }
     };
     handleAddMedia = () => {
@@ -97,8 +110,10 @@ export default class Meme extends React.Component {
         dialog.showSaveDialog(null, null, filename => {
             if (filename) {
                 const { topText, bottomText, media, color } = this.state;
+                console.log('media on save', media);
+                const finalFileName = path.extname(filename) !== '.mp4' ? `${filename}.mp4` : filename;
                 const videoData = {
-                    saveFilePath: filename,
+                    saveFilePath: finalFileName,
                     topText,
                     bottomText,
                     color,
@@ -178,7 +193,11 @@ export default class Meme extends React.Component {
                             className="action-left-button"
                         />
                         <Progress percent={Math.floor(currentPlayBackTime / duration * 100)} inverted color="blue" />
-                        <Button onClick={this.createVideo} color="purple" className="action-right-button">
+                        <Button
+                            disabled={Boolean(!media)}
+                            onClick={this.createVideo}
+                            color="purple"
+                            className="action-right-button">
                             {t('create')}
                         </Button>
                     </div>
