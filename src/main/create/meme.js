@@ -3,16 +3,35 @@ const getVideoConfig = require('./config/getVideoConfig');
 const draw = require('./draw');
 const path = require('path');
 
-module.exports = async function meme(videoConfigFile) {
-    const { err, videoConfig } = getVideoConfig(videoConfigFile);
+function memeConfigFromData(data) {
+    const { saveFilePath, media, topText, bottomText, color } = data;
+    const validateData = () => {
+        //TODO: Add proper validation
+        return null;
+    };
+    const err = validateData(videoData);
+    return {
+        err,
+        memeConfig: {
+            saveFilePath,
+            media,
+            topText,
+            bottomText,
+            color
+        }
+    };
+}
+
+module.exports = async function meme(videoData) {
+    const { err, memeConfig } = memeConfigFromData(videoData);
     if (err) {
         return err;
     }
     try {
-        const { text, media, color, saveFilePath, padding = 100 } = videoConfig;
-        const cmd = `ffmpeg -y -i ${media[0].file} -filter_complex "[0:v]pad=iw:ih+${padding}:0:(oh-ih)/2:color=${
+        const { topText, bottomText, media, color, saveFilePath, padding = 100 } = memeConfig;
+        const cmd = `ffmpeg -y -i ${media.file} -filter_complex "[0:v]pad=iw:ih+${padding}:0:(oh-ih)/2:color=${
             color[0].value
-        }, ${draw.memeTextTop(text[0])}, ${draw.memeTextBottom(text[1])}" ${saveFilePath}`;
+        }, ${draw.memeTextTop(topText)}, ${draw.memeTextBottom(bottomText)}" ${saveFilePath}`;
 
         const ffmpeg = exec(cmd);
 

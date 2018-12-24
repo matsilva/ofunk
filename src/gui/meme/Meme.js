@@ -2,10 +2,8 @@ import React from 'react';
 import translate from '../i18n/translate';
 import { Button, Progress } from 'semantic-ui-react';
 import './Meme.less';
-const { dialog } = window.require('electron').remote;
 const { ipcRenderer } = window.require('electron');
-const fs = window.require('fs');
-const path = window.require('path');
+const { dialog } = window.require('electron').remote;
 
 const t = translate(['meme']);
 
@@ -17,9 +15,24 @@ export default class Meme extends React.Component {
     bottomTextRef = React.createRef();
     mediaFilePicker = React.createRef();
     state = {
-        topText: t('topText'),
-        bottomText: t('bottomText'),
-        mediaFile: null,
+        topText: {
+            text: t('topText'),
+            fontFile: '/Users/evsilva22/Library/Fonts/AllerDisplay.ttf',
+            fontSize: 72,
+            padding: 200
+        },
+        bottomText: {
+            text: t('bottomText'),
+            fontFile: '/Users/evsilva22/Library/Fonts/AllerDisplay.ttf',
+            fontSize: 72,
+            padding: 200
+        },
+        media: null,
+        color: [
+            {
+                value: '0xffffff'
+            }
+        ],
         duration: 30,
         currentPlayBackTime: 0,
         current: 30
@@ -40,7 +53,7 @@ export default class Meme extends React.Component {
 
         console.log(e.dataTransfer.files[0]);
         if (e.dataTransfer.files[0]) {
-            this.setState({ mediaFile: e.dataTransfer.files[0] });
+            this.setState({ media: e.dataTransfer.files[0] });
         }
     };
     onDurationChange = () => {
@@ -54,9 +67,9 @@ export default class Meme extends React.Component {
             [`${textType}Text`]: e.target.innerText
         });
     };
-    handleMediaInput = e => {
+    handleMediaInput = () => {
         if (this.mediaFilePicker.current.files[0]) {
-            this.setState({ mediaFile: this.mediaFilePicker.current.files[0] });
+            this.setState({ media: this.mediaFilePicker.current.files[0] });
         }
     };
     handleAddMedia = () => {
@@ -81,29 +94,35 @@ export default class Meme extends React.Component {
         clearInterval(this.playInterval);
     };
     createVideo = () => {
-        const { topText, bottomText, mediaFile } = this.state;
-        const videoData = {
-            topText,
-            bottomText,
-            mediaFile
-        };
-        ipcRenderer.send('meme-create', videoData);
+        dialog.showSaveDialog(null, null, filename => {
+            if (filename) {
+                const { topText, bottomText, media, color } = this.state;
+                const videoData = {
+                    saveFilePath: filename,
+                    topText,
+                    bottomText,
+                    color,
+                    media
+                };
+                ipcRenderer.send('meme-create', videoData);
+            }
+        });
     };
-    renderMedia = mediaFile => {
-        if (mediaFile.type.includes('video')) {
+    renderMedia = media => {
+        if (media.type.includes('video')) {
             return (
                 <video ref={this.videoRef} onDurationChange={this.onDurationChange}>
-                    <source src={`file://${mediaFile.path}`} type={mediaFile.type} />
+                    <source src={`file://${media.path}`} type={media.type} />
                 </video>
             );
-        } else if (mediaFile.type.includes('image')) {
-            return <img src={mediaFile.path} alt={mediaFile.name} />;
+        } else if (media.type.includes('image')) {
+            return <img src={media.path} alt={media.name} />;
         } else {
             return <p>{t('unknownMedia')}</p>;
         }
     };
     render() {
-        const { mediaFile, currentPlayBackTime, duration } = this.state;
+        const { media, currentPlayBackTime, duration } = this.state;
         return (
             <div className="editor-container meme">
                 <div className="editor-left flex flex-column justify-between items-center">
@@ -123,8 +142,8 @@ export default class Meme extends React.Component {
                                 onDrop={this.handleMediaDrop}
                                 onDragOver={this.handleMediaDragOver}
                                 onMouseOver={this.handleMediaMouseOver}>
-                                {mediaFile ? (
-                                    this.renderMedia(mediaFile)
+                                {media ? (
+                                    this.renderMedia(media)
                                 ) : (
                                     <div className="add-media-container">
                                         <Button color="grey" className="add-media-button" onClick={this.handleAddMedia}>
@@ -151,7 +170,7 @@ export default class Meme extends React.Component {
                     </div>
                     <div className="bottom-action-bar flex justify-between items-center pv2">
                         <Button
-                            disabled={Boolean(!mediaFile)}
+                            disabled={Boolean(!media)}
                             circular
                             onClick={this.onPlay}
                             icon="play"

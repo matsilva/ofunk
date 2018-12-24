@@ -3,7 +3,7 @@ const create = require('../create');
 
 program.option('-c, --config <path>', 'set the video config json.');
 
-program.on('--help', function() {
+program.on('--help', () => {
     console.log('');
     console.log('Examples:');
     console.log('  $ ofunk create slideshow -c /path/to/file.json');
