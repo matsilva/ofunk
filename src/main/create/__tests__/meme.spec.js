@@ -21,7 +21,7 @@ describe('meme', () => {
             throw configErr;
         }
         try {
-            const memeErr = await meme(jsonFile);
+            const memeErr = await meme(videoConfig);
         } catch (error) {
             throw error;
         }
