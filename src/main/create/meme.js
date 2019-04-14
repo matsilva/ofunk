@@ -37,7 +37,7 @@ module.exports = async function meme(videoData) {
 
         let ffmpegErr;
         ffmpeg.on('data', buffer => {
-            console.log(buffer.toString());
+            console.log('Duration: [0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{2}'.exec(buffer.toString()));
         });
 
         ffmpeg.on('error', buffer => {
